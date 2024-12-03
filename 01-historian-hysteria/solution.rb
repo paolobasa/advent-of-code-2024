@@ -11,17 +11,12 @@ def load_input
 end
 
 def total_distance(in_1, in_2)
-  dist = 0
-  in_1.each_with_index {|v, i| dist += (v - in_2[i]).abs}
-
-  dist
+  in_1.each_with_index.map {|v, i| (v - in_2[i]).abs}.sum()
 end
 
 def similarity_score(in_1, in_2)
   in_2_tally, score = in_2.tally, 0
-  in_1.each {|v| score += in_2_tally[v].nil? ? 0 : v * in_2_tally[v]}
-
-  score
+  in_1.each.map {|v| in_2_tally[v].nil? ? 0 : v * in_2_tally[v]}.sum()
 end
 
 in_1, in_2 = load_input
